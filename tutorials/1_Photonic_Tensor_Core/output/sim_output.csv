@@ -1,0 +1,7 @@
+ComponentName,StatisticName,StatisticSubId,StatisticType,SimTime,Rank,Sum.f64,SumSQ.f64,Count.u64,Min.f64,Max.f64
+dac_data,energyDAC,,Accumulator,87110,0,883.251507,94501.807883,52,0.872000,296.008000
+dac_weight,energyDAC,,Accumulator,87110,0,17199.966257,295838839.251895,1,17199.966257,17199.966257
+mod,energyModulator,,Accumulator,87110,0,7090.745775,9107159.642863,52,7.840000,2960.960000
+mesh,energyMesh,,Accumulator,87110,0,4330.424645,18752577.603210,1,4330.424645,4330.424645
+pd,energyPhotoDetector,,Accumulator,87110,0,209.064697,8188.026675,52,0.182401,88.881896
+adc_data,energyADC,,Accumulator,87110,0,1851.360000,3427533.849600,1,1851.360000,1851.360000

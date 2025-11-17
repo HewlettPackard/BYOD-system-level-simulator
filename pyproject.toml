@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "byod"
+version = "0.1.0"
+authors = [
+    {Fabian Böhm }
+    {Sébastien d'Herbais de Thun }
+]
+description = "Build & benchmark Your Optical Devide: An event-driven system-level simulation framework for large-scale photonic systems"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    # No specific license chosen yet
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+]
+dependencies = [
+    "torch>=2.6.0",
+    "numpy>=2.2.4",
+    "colorlog>=6.9",
+    "pyYAML>=6.0",
+    "multimethod>=2.0",
+    "scikit-learn>=1.6.1",
+    "ucimlrepo>=0.0.7",
+    "pandas>=2.2",
+    "ordered-set>=4.1.0",
+    "asteval>=1.0.6",
+    "torchvision",
+    "tqdm",
+    "fastparquet",
+    "pyarrow",
+    "openpyxl",
+]
+
+[project.optional-dependencies]
+plotting = ["matplotlib>=3.0"]
+dev = ["pytest", "hatch"] # Add hatch here if you use its env management
+
+[project.urls]
+"Homepage" = "https://github.com/HewlettPackard/BYOD-system-level-simulator"
+"Bug Tracker" = "https://github.com/HewlettPackard/BYOD-system-level-simulator/issues"

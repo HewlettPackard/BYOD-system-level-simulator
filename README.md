@@ -1,71 +1,83 @@
-# BYOD - Build&benchmark Your Optical Device
-A cycle-accurate, event-driven system-level simulator to evaluate the performance of photonic systems in computer architectures.
+# BYOD - <u>B</u>uild & benchmark <u>Y</u>our <u>O</u>ptical <u>D</u>evice
 
-## Installation
-Clone repository and set up all submodules
-```bash
-git clone stuff
+## Introduction
+
+BYOD is an event-driven system-level simulation framework for the design and evaluation of large-scale photonic information processing systems. It consists of a set of modular simulation tools for opto-electronics components, such as lasers, optical modulators, photodiodes, optical meshes and analog-digital converters, that perform time-discrete functional simulations of signal flows. These modular simulators can be flexibly combined to build scalable simulations of opto-electronic systems, potentially containing thousands of components. BYOD is built on top of the structurcal simulation toolkit (SST), a widely used simulation framework for high-performance-computing (HPC) architectures. BYOD's opto-electronic simualtion tools can be interfaced with various computer architecture simulation tools, allowing co-simulation of photonic components with, e.g., memory, network controllers and CPUs. This enables BYOD to be used for design and cycle-accurate evaluation of photonic systems inside of computer architectures, e.g., for photonic interconnects [^1] or photonic accelerators [^2,^3].
+
+Possible use cases for BYOD include:
++ Functional verification, profiling and optimization of pipelined data flows in photonic systems
++ Cycle-accurate evaluation of througput, latency and energy consumption
++ Optimization of hardware parameters to maximize a system's performance
++ Co-design and benchmarking of photonic systems and computer architectures
++ Development and testing of software stacks (e,g, compilers) for opto-electronic computer architectures
+
+BYOD has been used, a.o., for the design of photonic hardware accelerators for linear algebra operations and AI workloads [^2,^3]. 
+
+## Installing BYOD
+
+BYOD requires installation of the Structural Simulation Toolkit [(SST)](www.sst-simulator.org) developed by Sandia National Laboratories. SST can be installed on various Unix, Linux, MaxOS and Windows (using the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)) systems. A full list of officially supported operating systems is provided [here](https://sst-simulator.org/SSTPages/SSTElementReleaseMatrix/). To simplify the installation process, BYOD can be run as a Docker container. A build script for the container image with all dependencies is provided here: [Docker image builder](./docker/) 
+
+Detailed installation instructions for BYOD can be found here:
+[Installation instructions](./sst-elements/src_cpp)
+
+## Using BYOD
+
+BYOD provides a set of modular simulators for various opto-electronic components that can compiled as SST components. Components include ports for receiving and sending data to other components. Each component will perform operations on an event-driven basis, e.g., when receiving data or during a simulated clock cycle. The operations within elements and the communiation with other elements incorporate processing delays to model the propagation of the data flow in time. Simulations of photonic systems in BYOD can be created and executed like any other [SST simulation](https://sst-simulator.org/sst-docs/docs/guides/runningSST) by using a Python configuration file. The [configuration file](https://sst-simulator.org/sst-docs/docs/config) defines and configures simulated components (e.g., lasers, modulators, CPUs) and links them together to enable data flow between simulators:
+
+```text
+component = sst.Component("<component name>", "byod.<BYOD component>") # define simulator component
+component.addParams({ # configure component parameters
+    "<name of parameter>" : <value>,
+})
+link = sst.Link("<link name>") # create component link
+link.connect( (component, "<port>", "<delay>"), (<component>, "<port>", "<delay>") ) # link ports of different components with a propagation delay
 ```
 
-### Docker (suggested)
-We suggest using the provided Docker image for running and developing. You have to have Docker installed on your system (other container tools such as podman should work by adapting the `<root>/docker/dockerctl.sh` file but were not tested).
+Simulations are executed using the command:
 
-```bash
-# Build the container
-cd ./docker
-./dockerctl.sh -b <image-name>:<tag> Containerfile <port>
-cd ..
-# run the container
-./docker/dockerctl.sh -s <image-name>:<tag> <name> <path> <port>
-
-# inside container
-cd byod
-pip install -r requirements.txt
-# Setup using Autotools
-./autogen.sh
-./run_config.sh
-# install cacti
-cd tests/accelergy_cacti_plugin && make build && cd ../.. 
-# compile
-make && make install
-# run simulation
-python3 ./tests/main.py
+```text
+$ sst <name of config file>.py
 ```
 
-It is important that you go to the correct directory for building and running the container because otherwise files will not be found (the Containerfile) or not be copied to the container (your local copy of this repository when running the container).
+SST can also natively exploit the message parsing interface (MPI) to run simulations in parallel and speed up computation. Parallel simulations are executed using the command:
 
-> We are working on providing a light-weight Alpine image...
-
-### Local
-If you want to run the project on your local machine without Docker, you first have to install the dependencies.
-1. SST: [Official Installation guide](http://sst-simulator.org/SSTPages/SSTBuildAndInstall_12dot1dot0_SeriesDetailedBuildInstructions/). You need to install `sst-core` and `sst-elements`. This project has been tested with Version 14.0.0 on Ubuntu (see Container Image)
-2. XTensor: We use [XTensor](https://xtensor.readthedocs.io/en/latest/) and [XTensor](https://xtensor.readthedocs.io/en/latest/) for all matrix operations in C++. Follow the installation instructions for your OS.
-3. Install Accelergy according to the documentation on their [GitHub](https://github.com/Accelergy-Project/accelergy/tree/master)
-4. Fully setup, compile and run the code
-```bash
-# Setup using Autotools
-<root>/autogen.sh
-<root>/run_config.sh
-# install cacti
-cd tests/accelergy_cacti_plugin && make build && cd ../..
-# compile
-make && make install
-# install python deps
-pip install -r <root>/requirements.txt
-# run the simulation
-python <root>/tests/main.py
+```text
+$ mpirun -np <#parallel processes> sst <name of config file>.py
 ```
 
-## Interface
-The simulator's interface is basically as with any SST project. 
+To learn the usage of BYOD, we have provided a set of tutorial examples that explain how to build and run simulations. A list of all tutorials can be found here:
+[Tutorials](./tutorials/) 
+
+An overview of simulator elements and features included in BYOD can be found here:
+[Documentation](./documentation/) 
+
+## Citing BYOD
+
+Please cite the following:
+
+> F. Böhm, S. d'Herbais de Thun, M. Kapusta, M. Hejda, B. Tossoun, R. Beausoleil, T. Van Vaerenbergh, "BYOD: A System-Level Simulator Framework for End-To-End Evaluation and Architecture Design of Photonic AI Accelerators," 2025 Conference on Lasers and Electro-Optics Europe & European Quantum Electronics Conference (CLEO/Europe-EQEC), Munich, Germany, 2025 [doi:10.1109/CLEO/Europe-EQEC65582.2025.11109777](https://doi.org/10.1109/CLEO/Europe-EQEC65582.2025.11109777)
 
 
+## Contributing to BYOD
+Thank you for your interest in contributing to BYOD! BYOD is an open-source project and we are continiously looking into extending its functionality and its use cases. If you have found a bug or
+want to ask a question or discuss a  new feature (such as adding new simulation models or architectures), please open an
+[issue](https://github.com/HewlettPackard/BYOD-system-level-simulator/issues).   Once  a new  feature
+has  been implemented  and tested, or a bug has been fixed, please submit a
+[pull](https://github.com/HewlettPackard/BYOD-system-level-simulator/pulls) request.
 
-# Authors
-- Fabian Böhm
-- Sébastien d'Herbais de Thun
-- Morten Kapusta, [morten-kapusta](github.hpe.com/morten-kapusta)
+In order for us to accept your pull request, you will need to `sign-off` your commit.
+This [page](https://wiki.linuxfoundation.org/dco) contains more information about it.
+In short, please add the following line at the end of your commit message:
+```text
+Signed-off-by: First Second <email>
+```
+
+## License
+BYOD is licensed under the [MIT](https://github.com/HewlettPackard/X-TIME/blob/master/LICENSE) license.
 
 
-# Credits
+[^1]: D. Liang et al., "An Energy-Efficient and Bandwidth-Scalable DWDM Heterogeneous Silicon Photonics Integration Platform," in IEEE Journal of Selected Topics in Quantum Electronics, vol. 28, no. 6: High Density Integr. Multipurpose Photon. Circ., pp. 1-19, Nov.-Dec. 2022, Art no. 6100819, [doi:10.1109/JSTQE.2022.3181939](https://ieeexplore.ieee.org/document/9794616)
 
+[^2]: B. Tossoun et al., "Large-Scale Integrated Photonic Device Platform for Energy-Efficient AI/ML Accelerators," in IEEE Journal of Selected Topics in Quantum Electronics, vol. 31, no. 3: AI/ML Integrated Opto-electronics, 2025, Art no. 8200326, [doi:10.1109/JSTQE.2025.3527904](https://ieeexplore.ieee.org/abstract/document/10835188).
+
+[^3]: F. Böhm et al., "BYOD: A System-Level Simulator Framework for End-To-End Evaluation and Architecture Design of Photonic AI Accelerators," 2025 Conference on Lasers and Electro-Optics Europe & European Quantum Electronics Conference (CLEO/Europe-EQEC), Munich, Germany, 2025 [doi:10.1109/CLEO/Europe-EQEC65582.2025.11109777](https://doi.org/10.1109/CLEO/Europe-EQEC65582.2025.11109777)

@@ -1,0 +1,68 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Autotools
+.deps
+.libs
+Makefile
+Makefile.in
+aclocal.m4
+config
+config.*
+configure
+*.inc
+libtool
+src_cpp/sst_*_config.h*
+src_cpp/stamp-*
+**/libltdl/
+*.cache
+*.dirstamp
+
+# python env
+.venv
+
+# Cpp includes
+Fastor/*
+
+# data
+data/*
+models/*
+
+.vscode
+
+#WSL file indexing
+*.Identifier
+target/*
+
+#pycache
+**/__pycache__/

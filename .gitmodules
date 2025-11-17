@@ -1,0 +1,8 @@
+[submodule "utils/submodules/accelergy-cacti-plug-in"]
+	path = utils/submodules/accelergy-cacti-plug-in
+	url = https://github.com/Accelergy-Project/accelergy-cacti-plug-in.git
+
+[submodule "utils/submodules/accelergy-adc-plug-in"]
+	path = utils/submodules/accelergy-adc-plug-in
+	url = https://github.com/Accelergy-Project/accelergy-adc-plug-in
+
