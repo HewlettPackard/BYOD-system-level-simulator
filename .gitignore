@@ -47,6 +47,9 @@ src_cpp/stamp-*
 **/libltdl/
 *.cache
 *.dirstamp
+sst-elements/config/*
+!sst-elements/config
+!sst-elements/config/sst_core_check_install.m4
 
 # python env
 .venv
