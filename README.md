@@ -15,10 +15,10 @@ BYOD has been used, a.o., for the design of photonic hardware accelerators for l
 
 ## Installing BYOD
 
-BYOD requires installation of the Structural Simulation Toolkit [(SST)](www.sst-simulator.org) developed by Sandia National Laboratories. SST can be installed on various Unix, Linux, MaxOS and Windows (using the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)) systems. A full list of officially supported operating systems is provided [here](https://sst-simulator.org/SSTPages/SSTElementReleaseMatrix/). To simplify the installation process, BYOD can be run as a Docker container. A build script for the container image with all dependencies is provided here: [Docker image builder](./docker/) 
+BYOD requires installation of the Structural Simulation Toolkit [(SST)](https://sst-simulator.org) developed by Sandia National Laboratories. SST can be installed on various Unix, Linux, MaxOS and Windows (using the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)) systems. A full list of officially supported operating systems is provided [here](https://sst-simulator.org/SSTPages/SSTElementReleaseMatrix/). To simplify the installation process, BYOD can be run as a Docker container. A build script for the container image with all dependencies is provided here: [Docker image builder](./docker/) 
 
 Detailed installation instructions for BYOD can be found here:
-[Installation instructions](./sst-elements/src_cpp)
+[Installation instructions](./sst-elements)
 
 ## Using BYOD
 
