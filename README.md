@@ -11,7 +11,7 @@ Possible use cases for BYOD include:
 + Co-design and benchmarking of photonic systems and computer architectures
 + Development and testing of software stacks (e,g, compilers) for opto-electronic computer architectures
 
-BYOD has been used, a.o., for the design of photonic hardware accelerators for linear algebra operations and AI workloads [^2,^3]. 
+BYOD has been used, a.o., for the design of photonic hardware accelerators for linear algebra operations and AI workloads [^2] [^3]. 
 
 ## Installing BYOD
 
