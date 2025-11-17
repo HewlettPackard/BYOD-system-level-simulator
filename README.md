@@ -77,7 +77,5 @@ BYOD is licensed under the [MIT](https://github.com/HewlettPackard/X-TIME/blob/m
 
 
 [^1]: D. Liang et al., "An Energy-Efficient and Bandwidth-Scalable DWDM Heterogeneous Silicon Photonics Integration Platform," in IEEE Journal of Selected Topics in Quantum Electronics, vol. 28, no. 6: High Density Integr. Multipurpose Photon. Circ., pp. 1-19, Nov.-Dec. 2022, Art no. 6100819, [doi:10.1109/JSTQE.2022.3181939](https://ieeexplore.ieee.org/document/9794616)
-
 [^2]: B. Tossoun et al., "Large-Scale Integrated Photonic Device Platform for Energy-Efficient AI/ML Accelerators," in IEEE Journal of Selected Topics in Quantum Electronics, vol. 31, no. 3: AI/ML Integrated Opto-electronics, 2025, Art no. 8200326, [doi:10.1109/JSTQE.2025.3527904](https://ieeexplore.ieee.org/abstract/document/10835188).
-
 [^3]: F. Böhm et al., "BYOD: A System-Level Simulator Framework for End-To-End Evaluation and Architecture Design of Photonic AI Accelerators," 2025 Conference on Lasers and Electro-Optics Europe & European Quantum Electronics Conference (CLEO/Europe-EQEC), Munich, Germany, 2025 [doi:10.1109/CLEO/Europe-EQEC65582.2025.11109777](https://doi.org/10.1109/CLEO/Europe-EQEC65582.2025.11109777)
